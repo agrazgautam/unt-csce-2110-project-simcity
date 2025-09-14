@@ -15,6 +15,8 @@ config::config()
 zone::zone()
 {
     type = 'n';
-    value = -1;
+    population = -1;
+    pollution = -1;
+
 
 };

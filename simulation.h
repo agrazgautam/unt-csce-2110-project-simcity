@@ -37,7 +37,7 @@ class zone
     public:
         zone();
         char type;
-        int value;
+        int population, pollution;
 
 
 };
