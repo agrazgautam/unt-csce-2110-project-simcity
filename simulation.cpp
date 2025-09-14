@@ -8,6 +8,7 @@ config::config()
     layout = "";
     limit = -1;
     rate = -1;
+    timestep = -1;
 
 };
 

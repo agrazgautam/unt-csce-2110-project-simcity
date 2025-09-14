@@ -15,6 +15,7 @@ class config
         string layout;
         int limit;
         int rate;
+        int timestep;
 
 };
 
