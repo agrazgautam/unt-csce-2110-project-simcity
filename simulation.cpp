@@ -14,7 +14,7 @@ config::config()
 
 zone::zone()
 {
-    type = NULL;
-    value = NULL;
+    type = 'n';
+    value = -1;
 
 };
