@@ -10,3 +10,11 @@ config::config()
     rate = -1;
 
 };
+
+
+zone::zone()
+{
+    type = NULL;
+    value = NULL;
+
+};

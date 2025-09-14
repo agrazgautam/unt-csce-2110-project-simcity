@@ -20,4 +20,28 @@ class config
 
 
 
+/*
+This is the zone class. It will store the properties of a zone cell.
+R represents a residential zone
+I represents an industrial zone
+C represents a commercial zone
+- represents a road
+T represents a powerline
+# represents a powerline over a road
+P represents a power plant
+
+*/
+
+class zone
+{
+    public:
+        zone();
+        char type;
+        int value;
+
+
+};
+
+
+
 #endif
