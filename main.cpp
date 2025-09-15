@@ -3,12 +3,15 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <cctype>
 
 using namespace std;
 
 config read_config();
 
 vector<vector<zone>> read_layout(const string region);
+
+void print_layout(const vector<vector<zone>> grid);
 
 
 config read_config()
@@ -25,7 +28,7 @@ config read_config()
         cout << "Enter the config file: ";
         getline(cin, file_name);
 
-        ifstream config_file(file_name);
+        config_file.open(file_name);
 
         if (!config_file.is_open()){
             cout << "Error: Config file could not be loaded: " << file_name << endl;
@@ -92,7 +95,7 @@ vector<vector<zone>> read_layout(const string region)
         cout << "Enter the Region Layout file: ";
         getline(cin, file_name);
 
-        ifstream regionLayout(file_name);
+        regionLayout.open(file_name);
 
         if (!regionLayout.is_open()){
             cout << "Error: The Region Layout file could not be loaded: " << file_name << endl;
@@ -109,7 +112,7 @@ vector<vector<zone>> read_layout(const string region)
 
         while (getline(ss, layout, ',')) {
             zone cell;
-            cell.type = layout[0];   // First character of cell
+            cell.type = toupper(layout[0]);   // First character of cell
             cell.population = 0;
             cell.pollution = 0;
             row.push_back(cell);
@@ -124,6 +127,39 @@ vector<vector<zone>> read_layout(const string region)
 };
 
 
+// Printing the layout. The zones are seperated by single space. Can be changed easily for better visualization.
+void print_layout(const vector<vector<zone>> grid)
+{   
+    string space = " "; //Change space value for adjusting the space between zone cells.
+
+
+    for (vector<vector<zone>>::const_iterator row = grid.begin(); row != grid.end(); row++)
+    {
+        for (vector<zone>::const_iterator cell = row->begin(); cell != row->end(); cell++)
+        {   
+            // Show letter if population = 0 otherwise show the populatioin for R, I, and C. Everything else, show the type.
+
+            if ((cell->type == 'R' || cell->type == 'I' || cell->type == 'C') && cell->population == 0) {
+                cout << cell->type << space;
+            }
+            else if ((cell->type == 'R' || cell->type == 'I' || cell->type == 'C') && cell->population > 0){
+                cout << cell->population << space;
+            }
+            else {
+
+                cout << cell->type << space;
+            }
+        }
+
+        cout << endl;
+
+
+    }
+
+    return;
+
+};
+
 
 
 int main()
@@ -135,11 +171,14 @@ int main()
     vector<vector<zone>> grid = read_layout(configData.layout);
 
     if (grid.size() == 0) {cout <<"The Region Layout file could not be loaded properly." << endl; return -1;}
-    
 
 
+    // Initialize the time step 0.
+    configData.timestep = 0;
 
+    cout << "Time Step 0" << endl;
 
+    print_layout(grid);
 
 
     return 0;
