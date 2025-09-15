@@ -1,1 +1,50 @@
+Project 1 – Milestone Submission
+
 This is the README file. This will include steps to compile and run the program.
+
+Use provided makefile in Linux for easier compilation:
+make
+
+To run:
+./simcity
+
+Use this code for compliling anywhere:
+g++ *.cpp -o simcity
+
+To run the program after compiling:
+Linux: ./simcity
+Windows: simcity.exe
+
+
+Requirements:
+- g++
+- Place all .cpp files, config1.txt, and region1.csv in the same directory.
+- config1.txt format:
+Region Layout:region1.csv
+Time Limit:<limit>
+Refresh Rate:<rate>
+
+
+Example config1.txt:
+Region Layout:region1.csv
+Time Limit:20
+Refresh Rate:1
+
+
+Example region1.csv:
+ , ,T,#,T,T,T, 
+I,I,I,-,C,C,T, 
+I,I,I,-,C,C,T,P
+I,I,I,-,C,C,T, 
+-,-,-,-,-,-,#,-
+ , ,-,R,R,R,T, 
+ , ,-,R,R,R, , 
+ , ,-,R,R,R, , 
+
+
+ Notes:
+- This milestone implements Component 1:
+    * Reads configuration file
+    * Reads region file
+    * Initializes simulation
+    * Outputs initial region state (time step 0)
