@@ -1,4 +1,10 @@
+# Untracked directories
 bin/
 logs/
+
+# Compiled object files
+*.o
+
+# Executables
 *.out
 *.exe
