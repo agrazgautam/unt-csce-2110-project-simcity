@@ -29,6 +29,7 @@ void updateCommercial(vector<vector<zone>>& grid, bool& state)
     state = false;
 
     position largestCell = largest(grid, 'C');
+    position largestAdjacentCell = largestAdjacent(grid, 'C');
     position cell;
 
     
@@ -36,6 +37,14 @@ void updateCommercial(vector<vector<zone>>& grid, bool& state)
     {
         updateCommercialCondition(grid, largestCell, state);
 
+    }
+
+    if (state == true){return;}
+
+
+    if (largestAdjacentCell.row != -1)
+    {
+        updateCommercialCondition(grid, largestAdjacentCell, state);
     }
 
     if (state == true){return;}
@@ -82,7 +91,6 @@ void updateCommercialCondition(vector<vector<zone>>& grid, const position& cell,
         {
             state = true;
             grid.at(cell.row).at(cell.col).population = grid.at(cell.row).at(cell.col).population + 1;
-            grid.at(cell.row).at(cell.col).pollution = grid.at(cell.row).at(cell.col).pollution + 1;
             grid.at(cell.row).at(cell.col).goods = grid.at(cell.row).at(cell.col).goods + 1;
             grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + 1;
             grid.at(cell.row).at(cell.col).count = 1;
@@ -97,7 +105,6 @@ void updateCommercialCondition(vector<vector<zone>>& grid, const position& cell,
         {
             state = true;
             grid.at(cell.row).at(cell.col).population = grid.at(cell.row).at(cell.col).population + 1;
-            grid.at(cell.row).at(cell.col).pollution = grid.at(cell.row).at(cell.col).pollution + 1;
             grid.at(cell.row).at(cell.col).goods = grid.at(cell.row).at(cell.col).goods + 1;
             grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + 1;
             grid.at(cell.row).at(cell.col).count = 1;
@@ -118,7 +125,6 @@ void updateCommercialCondition(vector<vector<zone>>& grid, const position& cell,
         {
             state = true;
             grid.at(cell.row).at(cell.col).population = grid.at(cell.row).at(cell.col).population + 1;
-            grid.at(cell.row).at(cell.col).pollution = grid.at(cell.row).at(cell.col).pollution + 1;
             grid.at(cell.row).at(cell.col).goods = grid.at(cell.row).at(cell.col).goods + 1;
             grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + 1;
             grid.at(cell.row).at(cell.col).count = 1;
