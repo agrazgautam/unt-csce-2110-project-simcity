@@ -76,4 +76,6 @@ position largestAdjacent(const vector<vector<zone>>& grid, const char& type); //
 
 void updatePollution(vector<vector<zone>>& grid, const position& cell);
 
+void updateAvailableZone(vector<vector<zone>>& grid, zone cell, const char& type);
+
 #endif
