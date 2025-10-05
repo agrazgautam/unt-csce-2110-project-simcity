@@ -121,7 +121,7 @@ void updateCommercialCondition(vector<vector<zone>>& grid, const position& cell,
     
     case 1:
 
-        if (adjacent(grid, cell, 'C').count >=2 && adjacent(grid, cell, 'C').pollution >= 2 && worker.job > 0 && goods.goods > 0)
+        if (adjacent(grid, cell, 'C').count > 1 && adjacent(grid, cell, 'C').population > 0 && worker.job > 0 && goods.goods > 0)
         {
             state = true;
             grid.at(cell.row).at(cell.col).population = grid.at(cell.row).at(cell.col).population + 1;
