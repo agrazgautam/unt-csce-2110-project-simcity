@@ -68,6 +68,7 @@ position largest(const vector<vector<zone>>& grid, const char& type); // It will
 zone available(const vector<vector<zone>>& grid, const char& type);
 
 
+zone adjacent(const vector<vector<zone>>& grid, const position& cell, const char& type);
 
 
 #endif

@@ -39,6 +39,7 @@ zone zone::operator+ (const zone& other)
     sum.pollution = this->pollution + other.pollution;
     sum.goods = this->goods + other.goods;
     sum.job = this->job + other.job;
+    sum.count = this->count + other.count;
 
     return sum;
 }
@@ -99,3 +100,28 @@ zone available(const vector<vector<zone>>& grid, const char& type)
 }
 
 
+zone adjacent(const vector<vector<zone>>& grid, const position& cell, const char& type)
+{
+    zone adjacent;
+    adjacent.type = type;
+
+    for (int row = cell.row - 1; row = cell.row + 1; row++)
+    {
+        if (row < 0 || row > grid.size()-1) {continue;}
+        
+        for (int col = cell.col - 1; col = cell.col + 1; col++)
+        {
+            if (col < 0 || col > grid.at(row).size()-1) {continue;}
+
+            if (row == cell.row && col == cell.col){continue;}
+
+            if (grid.at(row).at(col).type == type)
+            {
+                adjacent = adjacent + grid.at(row).at(col);
+            }
+
+        }
+    }
+
+    return adjacent;
+}
