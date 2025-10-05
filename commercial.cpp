@@ -92,15 +92,15 @@ void updateCommercialCondition(vector<vector<zone>>& grid, const position& cell,
         {
             state = true;
             grid.at(cell.row).at(cell.col).population = grid.at(cell.row).at(cell.col).population + 1;
-            grid.at(cell.row).at(cell.col).goods = grid.at(cell.row).at(cell.col).goods + 1;
-            grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + 1;
+            grid.at(cell.row).at(cell.col).goods = grid.at(cell.row).at(cell.col).goods + goods.goods;
+            grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + worker.job;
             grid.at(cell.row).at(cell.col).count = 1;
 
-            update.job = -1;
+            update.job = -worker.job;
             updateAvailableZone(grid, update, 'R');
 
             update.job = 0;
-            update.goods = -1;
+            update.goods = -goods.goods;
             updateAvailableZone(grid, update, 'I');
 
             return;
@@ -111,15 +111,15 @@ void updateCommercialCondition(vector<vector<zone>>& grid, const position& cell,
         {
             state = true;
             grid.at(cell.row).at(cell.col).population = grid.at(cell.row).at(cell.col).population + 1;
-            grid.at(cell.row).at(cell.col).goods = grid.at(cell.row).at(cell.col).goods + 1;
-            grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + 1;
+            grid.at(cell.row).at(cell.col).goods = grid.at(cell.row).at(cell.col).goods + goods.goods;
+            grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + worker.job;
             grid.at(cell.row).at(cell.col).count = 1;
 
-            update.job = -1;
+            update.job = -worker.job;
             updateAvailableZone(grid, update, 'R');
 
             update.job = 0;
-            update.goods = -1;
+            update.goods = -goods.goods;
             updateAvailableZone(grid, update, 'I');
 
             return;
@@ -136,15 +136,15 @@ void updateCommercialCondition(vector<vector<zone>>& grid, const position& cell,
         {
             state = true;
             grid.at(cell.row).at(cell.col).population = grid.at(cell.row).at(cell.col).population + 1;
-            grid.at(cell.row).at(cell.col).goods = grid.at(cell.row).at(cell.col).goods + 1;
-            grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + 1;
+            grid.at(cell.row).at(cell.col).goods = grid.at(cell.row).at(cell.col).goods + goods.goods;
+            grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + worker.job;
             grid.at(cell.row).at(cell.col).count = 1;
 
-            update.job = -1;
+            update.job = -worker.job;
             updateAvailableZone(grid, update, 'R');
 
             update.job = 0;
-            update.goods = -1;
+            update.goods = -goods.goods;
             updateAvailableZone(grid, update, 'I');
 
             return;
