@@ -70,41 +70,45 @@ void updateIndustrialCondition(vector<vector<zone>>& grid, const position& cell,
 {   
     zone worker = available(grid, 'R');
 
+    zone update;
+    update.type = 'R';
+    update.job = -2;
+
     int population = grid.at(cell.row).at(cell.col).population;
 
     switch (population)
 
     {
     case 0:
-        if (adjacent(grid, cell, 'T').count > 0 && worker.count >= 2)
+        if (adjacent(grid, cell, 'T').count > 0 && worker.job >= 2)
         {
             state = true;
             grid.at(cell.row).at(cell.col).population = grid.at(cell.row).at(cell.col).population + 1;
             grid.at(cell.row).at(cell.col).pollution = grid.at(cell.row).at(cell.col).pollution + 1;
-            grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + 1;
+            grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + 2;
             grid.at(cell.row).at(cell.col).goods = grid.at(cell.row).at(cell.col).goods + 1;
             grid.at(cell.row).at(cell.col).count = 1;
 
             updatePollution(grid, cell);
 
-            // update workers.
+            updateAvailableZone(grid, update, 'R');
 
             return;
 
         }
 
-        else if (adjacent(grid, cell, 'I').count >= 1 && adjacent(grid, cell, 'I').population >= 1 && worker.count >= 2)
+        else if (adjacent(grid, cell, 'I').count >= 1 && adjacent(grid, cell, 'I').population >= 1 && worker.job >= 2)
         {
             state = true;
             grid.at(cell.row).at(cell.col).population = grid.at(cell.row).at(cell.col).population + 1;
             grid.at(cell.row).at(cell.col).pollution = grid.at(cell.row).at(cell.col).pollution + 1;
-            grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + 1;
+            grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + 2;
             grid.at(cell.row).at(cell.col).goods = grid.at(cell.row).at(cell.col).goods + 1;
             grid.at(cell.row).at(cell.col).count = 1;
 
             updatePollution(grid, cell);
             
-            // update workers.
+            updateAvailableZone(grid, update, 'R');
 
             return;
 
@@ -116,18 +120,18 @@ void updateIndustrialCondition(vector<vector<zone>>& grid, const position& cell,
     
     case 1:
 
-        if (adjacent(grid, cell, 'I').count >= 2 && adjacent(grid, cell, 'I').population >= 1 && worker.count >= 2)
+        if (adjacent(grid, cell, 'I').count >= 2 && adjacent(grid, cell, 'I').population >= 1 && worker.job >= 2)
         {
             state = true;
             grid.at(cell.row).at(cell.col).population = grid.at(cell.row).at(cell.col).population + 1;
             grid.at(cell.row).at(cell.col).pollution = grid.at(cell.row).at(cell.col).pollution + 1;
-            grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + 1;
+            grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + 2;
             grid.at(cell.row).at(cell.col).goods = grid.at(cell.row).at(cell.col).goods + 1;
             grid.at(cell.row).at(cell.col).count = 1;
 
             updatePollution(grid, cell);
             
-            // update workers.
+            updateAvailableZone(grid, update, 'R');
 
             return;
 
@@ -138,18 +142,18 @@ void updateIndustrialCondition(vector<vector<zone>>& grid, const position& cell,
 
     case 2:
 
-        if (adjacent(grid, cell, 'I').count >= 4 && adjacent(grid, cell, 'I').population >= 2 && worker.count >= 2)
+        if (adjacent(grid, cell, 'I').count >= 4 && adjacent(grid, cell, 'I').population >= 2 && worker.job >= 2)
         {
             state = true;
             grid.at(cell.row).at(cell.col).population = grid.at(cell.row).at(cell.col).population + 1;
             grid.at(cell.row).at(cell.col).pollution = grid.at(cell.row).at(cell.col).pollution + 1;
-            grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + 1;
+            grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + 2;
             grid.at(cell.row).at(cell.col).goods = grid.at(cell.row).at(cell.col).goods + 1;
             grid.at(cell.row).at(cell.col).count = 1;
 
             updatePollution(grid, cell);
             
-            // update workers.
+            updateAvailableZone(grid, update, 'R');
 
             return;
 
