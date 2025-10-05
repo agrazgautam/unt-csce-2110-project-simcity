@@ -72,7 +72,7 @@ void updateIndustrialCondition(vector<vector<zone>>& grid, const position& cell,
 
     zone update;
     update.type = 'R';
-    update.job = -2;
+    update.job = -worker.job;
 
     int population = grid.at(cell.row).at(cell.col).population;
 
@@ -85,7 +85,7 @@ void updateIndustrialCondition(vector<vector<zone>>& grid, const position& cell,
             state = true;
             grid.at(cell.row).at(cell.col).population = grid.at(cell.row).at(cell.col).population + 1;
             grid.at(cell.row).at(cell.col).pollution = grid.at(cell.row).at(cell.col).pollution + 1;
-            grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + 2;
+            grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + worker.job;
             grid.at(cell.row).at(cell.col).goods = grid.at(cell.row).at(cell.col).goods + 1;
             grid.at(cell.row).at(cell.col).count = 1;
 
@@ -102,7 +102,7 @@ void updateIndustrialCondition(vector<vector<zone>>& grid, const position& cell,
             state = true;
             grid.at(cell.row).at(cell.col).population = grid.at(cell.row).at(cell.col).population + 1;
             grid.at(cell.row).at(cell.col).pollution = grid.at(cell.row).at(cell.col).pollution + 1;
-            grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + 2;
+            grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + worker.job;
             grid.at(cell.row).at(cell.col).goods = grid.at(cell.row).at(cell.col).goods + 1;
             grid.at(cell.row).at(cell.col).count = 1;
 
@@ -125,7 +125,7 @@ void updateIndustrialCondition(vector<vector<zone>>& grid, const position& cell,
             state = true;
             grid.at(cell.row).at(cell.col).population = grid.at(cell.row).at(cell.col).population + 1;
             grid.at(cell.row).at(cell.col).pollution = grid.at(cell.row).at(cell.col).pollution + 1;
-            grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + 2;
+            grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + worker.job;
             grid.at(cell.row).at(cell.col).goods = grid.at(cell.row).at(cell.col).goods + 1;
             grid.at(cell.row).at(cell.col).count = 1;
 
@@ -147,7 +147,7 @@ void updateIndustrialCondition(vector<vector<zone>>& grid, const position& cell,
             state = true;
             grid.at(cell.row).at(cell.col).population = grid.at(cell.row).at(cell.col).population + 1;
             grid.at(cell.row).at(cell.col).pollution = grid.at(cell.row).at(cell.col).pollution + 1;
-            grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + 2;
+            grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + worker.job;
             grid.at(cell.row).at(cell.col).goods = grid.at(cell.row).at(cell.col).goods + 1;
             grid.at(cell.row).at(cell.col).count = 1;
 
