@@ -2,6 +2,7 @@
 #define SIMULATION
 
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -31,6 +32,8 @@ T represents a powerline
 # represents a powerline over a road
 P represents a power plant
 
+The zone class has its type, population, pollution, and goods.
+
 */
 
 class zone
@@ -39,10 +42,30 @@ class zone
         zone();
         char type;
         int population, pollution;
+        int goods, job;
+        int count;
+        
+        /*
+        The industrial population provides goods to the commercial zones, at a rate of one good per population
 
+        */
 
+    zone operator+ (const zone& other);
 };
 
+
+
+struct position
+{   
+    position();
+    int row, col;
+};
+
+
+position largest(const vector<vector<zone>>& grid, const char& type); // It will return the position of the first largest value.
+
+
+zone available(const vector<vector<zone>>& grid, const char& type);
 
 
 
