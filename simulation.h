@@ -47,7 +47,7 @@ class zone
         
         /*
         The industrial population provides goods to the commercial zones, at a rate of one good per population
-
+        Only industrial type produces pollution. But it spreades across.
         */
 
     zone operator+ (const zone& other);
