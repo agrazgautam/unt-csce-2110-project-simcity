@@ -80,6 +80,7 @@ void updateCommercialCondition(vector<vector<zone>>& grid, const position& cell,
 {   
     zone worker = available(grid, 'R');
     zone goods = available(grid, 'I');
+    zone update;
 
     int population = grid.at(cell.row).at(cell.col).population;
 
@@ -95,7 +96,12 @@ void updateCommercialCondition(vector<vector<zone>>& grid, const position& cell,
             grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + 1;
             grid.at(cell.row).at(cell.col).count = 1;
 
-            // reduce goods and jobs and increase pollution.
+            update.job = -1;
+            updateAvailableZone(grid, update, 'R');
+
+            update.job = 0;
+            update.goods = -1;
+            updateAvailableZone(grid, update, 'I');
 
             return;
 
@@ -109,7 +115,12 @@ void updateCommercialCondition(vector<vector<zone>>& grid, const position& cell,
             grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + 1;
             grid.at(cell.row).at(cell.col).count = 1;
 
-            // reduce goods and jobs and increase pollution.
+            update.job = -1;
+            updateAvailableZone(grid, update, 'R');
+
+            update.job = 0;
+            update.goods = -1;
+            updateAvailableZone(grid, update, 'I');
 
             return;
 
@@ -129,7 +140,12 @@ void updateCommercialCondition(vector<vector<zone>>& grid, const position& cell,
             grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + 1;
             grid.at(cell.row).at(cell.col).count = 1;
 
-            // reduce goods and jobs and increase pollution.
+            update.job = -1;
+            updateAvailableZone(grid, update, 'R');
+
+            update.job = 0;
+            update.goods = -1;
+            updateAvailableZone(grid, update, 'I');
 
             return;
 
