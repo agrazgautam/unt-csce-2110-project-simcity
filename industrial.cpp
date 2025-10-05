@@ -85,7 +85,9 @@ void updateIndustrialCondition(vector<vector<zone>>& grid, const position& cell,
             grid.at(cell.row).at(cell.col).goods = grid.at(cell.row).at(cell.col).goods + 1;
             grid.at(cell.row).at(cell.col).count = 1;
 
-            // update workers, pollution.
+            updatePollution(grid, cell);
+
+            // update workers.
 
             return;
 
@@ -100,7 +102,9 @@ void updateIndustrialCondition(vector<vector<zone>>& grid, const position& cell,
             grid.at(cell.row).at(cell.col).goods = grid.at(cell.row).at(cell.col).goods + 1;
             grid.at(cell.row).at(cell.col).count = 1;
 
-            // update workers, pollution.
+            updatePollution(grid, cell);
+            
+            // update workers.
 
             return;
 
@@ -121,7 +125,9 @@ void updateIndustrialCondition(vector<vector<zone>>& grid, const position& cell,
             grid.at(cell.row).at(cell.col).goods = grid.at(cell.row).at(cell.col).goods + 1;
             grid.at(cell.row).at(cell.col).count = 1;
 
-            // update workers, pollution.
+            updatePollution(grid, cell);
+            
+            // update workers.
 
             return;
 
@@ -141,7 +147,9 @@ void updateIndustrialCondition(vector<vector<zone>>& grid, const position& cell,
             grid.at(cell.row).at(cell.col).goods = grid.at(cell.row).at(cell.col).goods + 1;
             grid.at(cell.row).at(cell.col).count = 1;
 
-            // update workers, pollution.
+            updatePollution(grid, cell);
+            
+            // update workers.
 
             return;
 
