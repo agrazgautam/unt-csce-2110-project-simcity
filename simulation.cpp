@@ -102,8 +102,8 @@ zone available(const vector<vector<zone>>& grid, const char& type)
 
 zone adjacent(const vector<vector<zone>>& grid, const position& cell, const char& type)
 {
-    zone adjacent;
-    adjacent.type = type;
+    zone adjacentCell;
+    adjacentCell.type = type;
 
     for (int row = cell.row - 1; row = cell.row + 1; row++)
     {
@@ -117,13 +117,13 @@ zone adjacent(const vector<vector<zone>>& grid, const position& cell, const char
 
             if (grid.at(row).at(col).type == type)
             {
-                adjacent = adjacent + grid.at(row).at(col);
+                adjacentCell = adjacentCell + grid.at(row).at(col);
             }
 
         }
     }
 
-    return adjacent;
+    return adjacentCell;
 }
 
 
@@ -158,5 +158,31 @@ position largestAdjacent(const vector<vector<zone>>& grid, const char& type)
 
     return largestCell;
 
+
+}
+
+
+void updatePollution(vector<vector<zone>>& grid, const position& cell)
+{   
+    int pollution = grid.at(cell.row).at(cell.col).pollution;
+
+    for (int row = cell.row - 1; row = cell.row + 1; row++)
+    {
+        if (row < 0 || row > grid.size()-1) {continue;}
+        
+        for (int col = cell.col - 1; col = cell.col + 1; col++)
+        {
+            if (col < 0 || col > grid.at(row).size()-1) {continue;}
+
+            if (row == cell.row && col == cell.col){continue;}
+
+            grid.at(row).at(col).pollution = grid.at(row).at(col).pollution + pollution -1;
+
+            if (grid.at(row).at(col).pollution < 0) {grid.at(row).at(col).pollution = 0;}
+
+        }
+    }
+
+    return;
 
 }

@@ -73,4 +73,7 @@ zone adjacent(const vector<vector<zone>>& grid, const position& cell, const char
 
 position largestAdjacent(const vector<vector<zone>>& grid, const char& type); // Returns the position of the largest adjacent total population
 
+
+void updatePollution(vector<vector<zone>>& grid, const position& cell);
+
 #endif
