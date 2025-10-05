@@ -27,23 +27,27 @@ Commercial
 void updateCommercial(vector<vector<zone>>& grid, bool& state)
 {
     position cell = largest(grid, 'C');
+
+    zone worker = available(grid, 'R');
+    zone goods = available(grid, 'I');
     
     if (cell.row != -1)
     {
-        zone resTotal = available(grid, 'R');
-        zone indTotal = available(grid, 'I');
-        if (resTotal.job >= 1 && indTotal.goods >= 1);
+        
+        if (worker.job >= 1 && goods.goods >= 1);
         {
-            for (int row = cell.row - 1; row = cell.row + 1; row++)
+            if (adjacent(grid, cell, 'C').count >=2 && adjacent(grid, cell, 'C').pollution >= 2)
             {
-                if (row <0) {continue;}
+                state = true;
+                grid.at(cell.row).at(cell.col).population = grid.at(cell.row).at(cell.col).population + 1;
+                grid.at(cell.row).at(cell.col).pollution = grid.at(cell.row).at(cell.col).pollution + 1;
+                grid.at(cell.row).at(cell.col).goods = grid.at(cell.row).at(cell.col).goods + 1;
+                grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + 1;
+                grid.at(cell.row).at(cell.col).count = 1;
 
-                for (int col = cell.col - 1; col = cell.col + 1; col++)
-                {
-                    if (col < 0) {continue;}
+                // reduce goods and jobs and increase pollution.
 
-
-                }
+                return;
 
             }
 
@@ -51,35 +55,88 @@ void updateCommercial(vector<vector<zone>>& grid, bool& state)
     }
 
 
-
-}
-
-
-zone adjCommercial(const vector<vector<zone>>& grid, const position& cell)
-{
-    zone commercial;
-    commercial.type = 'C';
-
-    if (grid.at(cell.row).at(cell.col).type != 'C'){throw invalid_argument("Only the cell type of commercial is allowed. Passed type: " + string(1,grid.at(cell.row).at(cell.col).type));}
-
-    for (int row = cell.row - 1; row = cell.row + 1; row++)
+    for (int row = 0; row < grid.size(); row++)
     {
-        if (row < 0) {continue;}
-        
-        for (int col = cell.col - 1; col = cell.col + 1; col++)
-        {
-            if (col < 0) {continue;}
+        cell.row = row;
 
-            if (row == cell.row && col == cell.col){continue;}
+        for (int col = 0; col < grid.at(row).size(); col++)
+        {   
+            
+            cell.col = col;
 
             if (grid.at(row).at(col).type == 'C')
             {
-                commercial = commercial + grid.at(row).at(col);
+
+                switch (grid.at(row).at(col).population)
+
+                {
+                case 0:
+                    if (adjacent(grid, cell, 'T').count >0 && worker.job > 0 && goods.goods > 0)
+                    {
+                        state = true;
+                        grid.at(cell.row).at(cell.col).population = grid.at(cell.row).at(cell.col).population + 1;
+                        grid.at(cell.row).at(cell.col).pollution = grid.at(cell.row).at(cell.col).pollution + 1;
+                        grid.at(cell.row).at(cell.col).goods = grid.at(cell.row).at(cell.col).goods + 1;
+                        grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + 1;
+                        grid.at(cell.row).at(cell.col).count = 1;
+
+                        // reduce goods and jobs and increase pollution.
+
+                        return;
+
+                    }
+
+                    else if (adjacent(grid, cell, 'C').count > 0 && adjacent(grid, cell, 'C').population > 0 && worker.job > 0 && goods.goods > 0)
+                    {
+                        state = true;
+                        grid.at(cell.row).at(cell.col).population = grid.at(cell.row).at(cell.col).population + 1;
+                        grid.at(cell.row).at(cell.col).pollution = grid.at(cell.row).at(cell.col).pollution + 1;
+                        grid.at(cell.row).at(cell.col).goods = grid.at(cell.row).at(cell.col).goods + 1;
+                        grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + 1;
+                        grid.at(cell.row).at(cell.col).count = 1;
+
+                        // reduce goods and jobs and increase pollution.
+
+                        return;
+
+                    }
+
+                    break;
+
+
+                
+                case 1:
+
+                    if (adjacent(grid, cell, 'C').count >=2 && adjacent(grid, cell, 'C').pollution >= 2 && worker.job > 0 && goods.goods > 0)
+                    {
+                        state = true;
+                        grid.at(cell.row).at(cell.col).population = grid.at(cell.row).at(cell.col).population + 1;
+                        grid.at(cell.row).at(cell.col).pollution = grid.at(cell.row).at(cell.col).pollution + 1;
+                        grid.at(cell.row).at(cell.col).goods = grid.at(cell.row).at(cell.col).goods + 1;
+                        grid.at(cell.row).at(cell.col).job = grid.at(cell.row).at(cell.col).job + 1;
+                        grid.at(cell.row).at(cell.col).count = 1;
+
+                        // reduce goods and jobs and increase pollution.
+
+                        return;
+
+                    }
+
+                break;
+                
+
+                default:
+                    break;
+                }
+
+
             }
 
         }
     }
+    
+    return;
 
-    return commercial;
 
 }
+
