@@ -71,4 +71,6 @@ zone available(const vector<vector<zone>>& grid, const char& type);
 zone adjacent(const vector<vector<zone>>& grid, const position& cell, const char& type);
 
 
+position largestAdjacent(const vector<vector<zone>>& grid, const char& type); // Returns the position of the largest adjacent total population
+
 #endif

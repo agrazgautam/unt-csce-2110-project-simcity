@@ -125,3 +125,38 @@ zone adjacent(const vector<vector<zone>>& grid, const position& cell, const char
 
     return adjacent;
 }
+
+
+// This function will return the x,y coordinate of the value with largest adjacent population. If the value is 0 or the type does not exist, it will return negative.
+position largestAdjacent(const vector<vector<zone>>& grid, const char& type)
+{
+    position cell, largestCell;
+    int population = 0;
+    zone largestAdjacent;
+
+    for (int row = 0; row < grid.size(); row++)
+    {
+        cell.row = row;
+
+        for (int col = 0; col < grid.at(row).size(); col++)
+        {   
+            cell.col = col;
+
+            if (grid.at(row).at(col).type == type)
+            {
+                largestAdjacent = adjacent(grid, cell, type);
+
+                if (largestAdjacent.population > population)
+                {
+                    largestCell = cell;
+                }
+
+            }
+
+        }
+    }
+
+    return largestCell;
+
+
+}
