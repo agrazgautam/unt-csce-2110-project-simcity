@@ -115,6 +115,9 @@ vector<vector<zone>> read_layout(const string region)
             cell.type = toupper(layout[0]);   // First character of cell
             cell.population = 0;
             cell.pollution = 0;
+            cell.goods = 0;
+            cell.job = 0;
+            cell.count = 1;
             row.push_back(cell);
         }
         grid.push_back(row);
