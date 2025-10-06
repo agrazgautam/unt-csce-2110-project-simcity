@@ -238,7 +238,7 @@ int main()
         << "Available Goods: " << available(grid, 'I').goods << endl;
         
         print_layout(grid);
-        this_thread::sleep_for(chrono::seconds(configData.rate));
+        //this_thread::sleep_for(chrono::seconds(configData.rate));
         
         
     }
@@ -257,6 +257,78 @@ int main()
         
     
     print_layout(grid);
+
+    char choice;
+    position cell;
+
+    while(true)
+    {
+        cout << "Do you want to take a closer look at a region?: [y/n] ";
+        
+        while (!(cin >> choice))
+        {
+            cout << "Invalid input. Please try again with: [y/n]" << endl;
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+        }
+        
+
+        if (choice == 'y' || choice == 'Y')
+        {   
+            while (true)
+            {
+            
+                cout << "Please enter the X-Coordinate (Column): ";
+
+                while (!(cin >> cell.col))
+                {
+                    cout << "Invalid input. Please try again with a valid integer." << endl;
+                    cin.clear();
+                    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+                }
+
+                cout << "Please enter the Y-Coordinate (Row): ";
+
+                while (!(cin >> cell.row))
+                {
+                    cout << "Invalid input. Please try again with a valid integer." << endl;
+                    cin.clear();
+                    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+                }
+
+                if (cell.row < 0 || cell.col < 0) {cout << "Invalid input. Please enter a positive number." << endl; continue;}
+
+                if ( cell.row > (static_cast<int>(grid.size())-1) || cell.col > (static_cast<int>(grid.at(0).size())-1))
+                {
+                    cout << "Invalid input. Please enter a value X-Coordinate: 0-" << grid.at(0).size()-1 << " Y-Coordinate: 0-" << grid.size()-1 << endl;
+                    continue;
+                }
+
+
+                cout << "Total Population of the Area: " << selectRegion(grid, cell, 'C').population + selectRegion(grid, cell, 'I').population + selectRegion(grid, cell, 'R').population << endl
+                << "Commercial Population of the Area: " << selectRegion(grid, cell, 'C').population << endl
+                << "Industrial Population of the Area: " << selectRegion(grid, cell, 'I').population << endl
+                << "Residential Population of the Area: " << selectRegion(grid, cell, 'R').population << endl
+                << "Total Pollution of the Area: " << selectRegion(grid, cell, 'C').pollution + selectRegion(grid, cell, 'I').pollution + selectRegion(grid, cell, 'R').pollution + selectRegion(grid, cell, '-').pollution +
+                selectRegion(grid, cell, 'T').pollution + selectRegion(grid, cell, '#').pollution + selectRegion(grid, cell, 'P').pollution + selectRegion(grid, cell, ' ').pollution << endl
+                << "Commercial Pollution of the Area: " << selectRegion(grid, cell, 'C').pollution << endl
+                << "Industrial Pollution of the Area: " << selectRegion(grid, cell, 'I').pollution << endl
+                << "Residential Pollution of the Area: " << selectRegion(grid, cell, 'R').pollution << endl;
+
+                cout << endl;
+                break;
+
+            }
+
+        }
+
+        else if (choice == 'n' || choice == 'N'){break;}
+        else {cout << "Invalid input. Please try again." << endl;}
+
+    }
 
 
     return 0;
