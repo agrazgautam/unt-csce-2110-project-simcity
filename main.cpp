@@ -238,7 +238,7 @@ int main()
         << "Available Goods: " << available(grid, 'I').goods << endl;
         
         print_layout(grid);
-        //this_thread::sleep_for(chrono::seconds(configData.rate));
+        this_thread::sleep_for(chrono::seconds(configData.rate));
         
         
     }
