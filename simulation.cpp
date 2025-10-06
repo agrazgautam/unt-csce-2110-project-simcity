@@ -180,7 +180,7 @@ void updatePollution(vector<vector<zone>>& grid, const position& cell)
 
             if ((row == cell.row) && (col == cell.col)){continue;}
 
-            grid.at(row).at(col).pollution = grid.at(row).at(col).pollution + pollution -1;
+            grid.at(row).at(col).pollution = pollution -1;
 
             if (grid.at(row).at(col).pollution < 0) {grid.at(row).at(col).pollution = 0;}
 
