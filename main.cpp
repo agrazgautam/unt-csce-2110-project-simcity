@@ -1,9 +1,14 @@
 #include "simulation.h"
+#include "commercial.h"
+#include "residential.h"
+#include "industrial.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <vector>
 #include <cctype>
+#include <thread>
+#include <chrono>
 
 using namespace std;
 
@@ -11,7 +16,7 @@ config read_config();
 
 vector<vector<zone>> read_layout(const string region);
 
-void print_layout(const vector<vector<zone>> grid);
+void print_layout(const vector<vector<zone>>& grid);
 
 
 config read_config()
@@ -131,7 +136,7 @@ vector<vector<zone>> read_layout(const string region)
 
 
 // Printing the layout. The zones are seperated by single space. Can be changed easily for better visualization.
-void print_layout(const vector<vector<zone>> grid)
+void print_layout(const vector<vector<zone>>& grid)
 {   
     string space = " "; //Change space value for adjusting the space between zone cells.
 
@@ -159,6 +164,10 @@ void print_layout(const vector<vector<zone>> grid)
 
     }
 
+    cout << endl;
+
+
+
     return;
 
 };
@@ -179,9 +188,59 @@ int main()
     // Initialize the time step 0.
     configData.timestep = 0;
 
-    cout << "Time Step 0" << endl;
+    cout << "Time Step: 0" << endl;
 
     print_layout(grid);
+    this_thread::sleep_for(chrono::seconds(configData.rate));
+
+    bool state = false;
+
+    int stateCount = 0;
+
+
+    for (configData.timestep = 1; configData.timestep <= configData.limit; configData.timestep++)
+    {
+        state = false;
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (i == 0)
+            {
+                updateCommercial(grid, state);
+
+                if (state == true) {break;}
+            }
+
+            else if (i == 1)
+            {
+                updateIndustrial(grid, state);
+                if (state == true) {break;}
+            }
+
+            else if ( i == 2)
+            {
+                updateResidential(grid, state);
+                if (state == true) {break;}
+            }
+
+        }
+
+        if (state == false){stateCount = stateCount + 1;}
+        else {stateCount = 0;}
+
+        if (stateCount == 2) {break;}
+
+
+
+        cout << "Time Step: " << configData.timestep << endl
+        << "Available Workers: " << available(grid, 'R').job << endl
+        << "Available Goods: " << available(grid, 'I').goods << endl;
+        
+        print_layout(grid);
+        this_thread::sleep_for(chrono::seconds(configData.rate));
+        
+        
+    }
 
 
     return 0;
