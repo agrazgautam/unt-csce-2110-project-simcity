@@ -6,13 +6,13 @@ Use provided makefile in Linux for easier compilation:
 make
 
 To run:
-./simcity
+./simcity.out
 
 Use this code for compliling anywhere:
-g++ *.cpp -o simcity
+g++ *.cpp -o simcity.out
 
 To run the program after compiling:
-Linux: ./simcity
+Linux: ./simcity.out
 Windows: simcity.exe
 
 
