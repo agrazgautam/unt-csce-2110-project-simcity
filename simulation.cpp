@@ -279,3 +279,32 @@ void updateAvailableZone(vector<vector<zone>>& grid, zone cell, const char& type
     return;
 
 }
+
+zone selectRegion(const vector<vector<zone>>& grid, const position& cell, const char& type)
+{
+
+    zone adjacentCell;
+    adjacentCell.type = type;
+
+
+
+    for (int row = (cell.row - 1); row <= (cell.row + 1); row++)
+    {
+        if ((row < 0) || (row > ( static_cast<int>(grid.size())-1 ))) {continue;}
+        
+        for (int col = (cell.col - 1); col <= (cell.col + 1); col++)
+        {
+            if ((col < 0) || ( col > (static_cast<int>(grid.at(row).size())-1) ) ) {continue;}
+
+            if (grid.at(row).at(col).type == type)
+            {
+                adjacentCell = adjacentCell + grid.at(row).at(col);
+            }
+
+        }
+    }
+
+    return adjacentCell;
+
+
+}
