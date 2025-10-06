@@ -53,11 +53,11 @@ void updateResidential(vector<vector<zone>>& grid, bool& state)
     if (state == true){return;}
 
 
-    for (int row = 0; row < grid.size(); row++)
+    for (size_t row = 0; row < grid.size(); row++)
     {
         cell.row = row;
 
-        for (int col = 0; col < grid.at(row).size(); col++)
+        for (size_t col = 0; col < grid.at(row).size(); col++)
         {   
             
             cell.col = col;

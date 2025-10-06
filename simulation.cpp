@@ -2,6 +2,7 @@
 #include <vector>
 #include <stdexcept>
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -29,12 +30,13 @@ zone::zone()
 
 zone zone::operator+ (const zone& other)
 {
-    zone sum;
     if (this->type != other.type)
     {
-        throw invalid_argument("The type must match for adding.");
+        throw invalid_argument("The type must match for adding. Type LHS: " + string(1, this->type) + " Type RHS: " + string(1, other.type));
     }
 
+    zone sum;
+    sum.type = this->type;
     sum.population = this->population + other.population;
     sum.pollution = this->pollution + other.pollution;
     sum.goods = this->goods + other.goods;
@@ -59,13 +61,13 @@ position largest(const vector<vector<zone>>& grid, const char& type)
     position cell;
     int largest = 0;
 
-    for (int row = 0; row < grid.size(); row++)
+    for (size_t row = 0; row < grid.size(); row++)
     {
-        for (int col = 0; col < grid.at(row).size(); col++)
+        for (size_t col = 0; col < grid.at(row).size(); col++)
         {
             if ( grid.at(row).at(col).type == type )
             {
-                if (grid.at(row).at(col).population > 0 && grid.at(row).at(col).population > largest)
+                if ((grid.at(row).at(col).population > 0 )&& (grid.at(row).at(col).population > largest))
                 {
                     cell.row = row;
                     cell.col = col;
@@ -105,15 +107,17 @@ zone adjacent(const vector<vector<zone>>& grid, const position& cell, const char
     zone adjacentCell;
     adjacentCell.type = type;
 
-    for (int row = cell.row - 1; row = cell.row + 1; row++)
-    {
-        if (row < 0 || row > grid.size()-1) {continue;}
-        
-        for (int col = cell.col - 1; col = cell.col + 1; col++)
-        {
-            if (col < 0 || col > grid.at(row).size()-1) {continue;}
 
-            if (row == cell.row && col == cell.col){continue;}
+
+    for (int row = (cell.row - 1); row <= (cell.row + 1); row++)
+    {
+        if ((row < 0) || (row > ( static_cast<int>(grid.size())-1 ))) {continue;}
+        
+        for (int col = (cell.col - 1); col <= (cell.col + 1); col++)
+        {
+            if ((col < 0) || ( col > (static_cast<int>(grid.at(row).size())-1) ) ) {continue;}
+
+            if ((row == cell.row )&& (col == cell.col)){continue;}
 
             if (grid.at(row).at(col).type == type)
             {
@@ -134,11 +138,11 @@ position largestAdjacent(const vector<vector<zone>>& grid, const char& type)
     int population = 0;
     zone largestAdjacent;
 
-    for (int row = 0; row < grid.size(); row++)
+    for (size_t row = 0; row < grid.size(); row++)
     {
         cell.row = row;
 
-        for (int col = 0; col < grid.at(row).size(); col++)
+        for (size_t col = 0; col < grid.at(row).size(); col++)
         {   
             cell.col = col;
 
@@ -166,15 +170,15 @@ void updatePollution(vector<vector<zone>>& grid, const position& cell)
 {   
     int pollution = grid.at(cell.row).at(cell.col).pollution;
 
-    for (int row = cell.row - 1; row = cell.row + 1; row++)
+    for (int row = (cell.row - 1); row <= (cell.row + 1); row++)
     {
-        if (row < 0 || row > grid.size()-1) {continue;}
+        if ((row < 0) || (row > (static_cast<int>(grid.size())-1) )) {continue;}
         
-        for (int col = cell.col - 1; col = cell.col + 1; col++)
+        for (int col = (cell.col - 1); col <= (cell.col + 1); col++)
         {
-            if (col < 0 || col > grid.at(row).size()-1) {continue;}
+            if ((col < 0) || ( col > (static_cast<int>(grid.at(row).size())-1) ) ) {continue;}
 
-            if (row == cell.row && col == cell.col){continue;}
+            if ((row == cell.row) && (col == cell.col)){continue;}
 
             grid.at(row).at(col).pollution = grid.at(row).at(col).pollution + pollution -1;
 
@@ -190,13 +194,13 @@ void updatePollution(vector<vector<zone>>& grid, const position& cell)
 void updateAvailableZone(vector<vector<zone>>& grid, zone cell, const char& type)
 {
 
-    for (int row = 0; row < grid.size(); row++)
+    for (size_t row = 0; row < grid.size(); row++)
     {
 
-        for (int col = 0; col < grid.at(row).size(); col++)
+        for (size_t col = 0; col < grid.at(row).size(); col++)
         {   
-            if (cell.population == 0 && cell.pollution == 0 && cell.goods == 0 && cell.job == 0) {return;}
-            
+            if ((cell.population == 0) && (cell.pollution == 0) && (cell.goods == 0) && (cell.job == 0)) {return;}
+
 
             if (grid.at(row).at(col).type == type)
             {
