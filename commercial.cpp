@@ -2,6 +2,7 @@
 #include "commercial.h"
 #include <vector>
 #include <stdexcept>
+#include <iostream>
 
 /*
 Commercial
@@ -88,7 +89,7 @@ void updateCommercialCondition(vector<vector<zone>>& grid, const position& cell,
 
     {
     case 0:
-        if (adjacent(grid, cell, 'T').count >= 1 && worker.job >= 1 && goods.goods >= 1)
+        if ((adjacent(grid, cell, 'T').count > 0 || adjacent(grid, cell, '#').count > 0) && worker.job >= 1 && goods.goods >= 1)
         {
             state = true;
             grid.at(cell.row).at(cell.col).population = grid.at(cell.row).at(cell.col).population + 1;

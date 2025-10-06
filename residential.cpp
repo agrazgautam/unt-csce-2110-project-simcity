@@ -88,7 +88,7 @@ void updateResidentialCondition(vector<vector<zone>>& grid, const position& cell
 
     {
     case 0:
-        if (adjacent(grid, cell, 'T').count > 0)
+        if ((adjacent(grid, cell, 'T').count > 0) || (adjacent(grid, cell, '#').count > 0))
         {
             state = true;
             grid.at(cell.row).at(cell.col).population = grid.at(cell.row).at(cell.col).population + 1;
