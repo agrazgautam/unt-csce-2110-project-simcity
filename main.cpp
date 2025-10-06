@@ -118,6 +118,7 @@ vector<vector<zone>> read_layout(const string region)
         while (getline(ss, layout, ',')) {
             zone cell;
             cell.type = toupper(layout[0]);   // First character of cell
+            if (isspace(cell.type) || cell.type == '\0') {cell.type = ' ';} // Converts all whitespace to space
             cell.population = 0;
             cell.pollution = 0;
             cell.goods = 0;
@@ -248,7 +249,8 @@ int main()
         << "Commercial Population: " << available(grid, 'C').population << endl
         << "Industrial Population: " << available(grid, 'I').population << endl
         << "Residential Population: " << available(grid, 'R').population << endl
-        << "Total Pollution: " << available(grid, 'C').pollution + available(grid, 'I').pollution + available(grid, 'R').pollution << endl
+        << "Total Pollution: " << available(grid, 'C').pollution + available(grid, 'I').pollution + available(grid, 'R').pollution + available(grid, '-').pollution +
+        available(grid, 'T').pollution + available(grid, '#').pollution + available(grid, 'P').pollution + available(grid, ' ').pollution << endl
         << "Commercial Pollution: " << available(grid, 'C').pollution << endl
         << "Industrial Pollution: " << available(grid, 'I').pollution << endl
         << "Residential Pollution: " << available(grid, 'R').pollution << endl;
