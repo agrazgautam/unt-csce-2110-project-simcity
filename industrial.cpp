@@ -49,7 +49,7 @@ void updateIndustrial(vector<vector<zone>>& grid, bool& state)
             
             cell.col = col;
 
-            if (grid.at(row).at(col).type == 'R')
+            if (grid.at(row).at(col).type == 'I')
             {
                 updateIndustrialCondition(grid, cell, state);
 
@@ -80,7 +80,7 @@ void updateIndustrialCondition(vector<vector<zone>>& grid, const position& cell,
 
     {
     case 0:
-        if (adjacent(grid, cell, 'T').count > 0 && worker.job >= 2)
+        if ((adjacent(grid, cell, 'T').count > 0 || adjacent(grid, cell, '#').count > 0) && worker.job >= 2)
         {
             state = true;
             grid.at(cell.row).at(cell.col).population = grid.at(cell.row).at(cell.col).population + 1;
