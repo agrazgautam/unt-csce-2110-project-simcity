@@ -243,5 +243,19 @@ int main()
     }
 
 
+    cout<< "Final State: " << endl
+        << "Total Population: " << available(grid, 'C').population + available(grid, 'I').population + available(grid, 'R').population << endl
+        << "Commercial Population: " << available(grid, 'C').population << endl
+        << "Industrial Population: " << available(grid, 'I').population << endl
+        << "Residential Population: " << available(grid, 'R').population << endl
+        << "Total Pollution: " << available(grid, 'C').pollution + available(grid, 'I').pollution + available(grid, 'R').pollution << endl
+        << "Commercial Pollution: " << available(grid, 'C').pollution << endl
+        << "Industrial Pollution: " << available(grid, 'I').pollution << endl
+        << "Residential Pollution: " << available(grid, 'R').pollution << endl;
+        
+    
+    print_layout(grid);
+
+
     return 0;
 }
