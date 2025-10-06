@@ -3,7 +3,7 @@ CXX = g++
 CXXFLAGS = -Wall -std=c++17
 
 # Target
-TARGET = simcity
+TARGET = simcity.out
 
 # Directories
 OBJDIR = bin
