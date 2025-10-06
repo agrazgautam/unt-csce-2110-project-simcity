@@ -78,7 +78,7 @@ void updateResidential(vector<vector<zone>>& grid, bool& state)
 
 }
 
-
+// Update the values according to given instruction
 void updateResidentialCondition(vector<vector<zone>>& grid, const position& cell, bool& state)
 {   
 

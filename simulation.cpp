@@ -101,7 +101,7 @@ zone available(const vector<vector<zone>>& grid, const char& type)
     return total;
 }
 
-
+// This function will return the total values of the adjacent cells from a given position
 zone adjacent(const vector<vector<zone>>& grid, const position& cell, const char& type)
 {
     zone adjacentCell;
@@ -165,7 +165,7 @@ position largestAdjacent(const vector<vector<zone>>& grid, const char& type)
 
 }
 
-
+// This function will update the pollution of adjacent cells for a given position
 void updatePollution(vector<vector<zone>>& grid, const position& cell)
 {   
     int pollution = grid.at(cell.row).at(cell.col).pollution;
@@ -191,6 +191,7 @@ void updatePollution(vector<vector<zone>>& grid, const position& cell)
 
 }
 
+// It willl update the values for available zones
 void updateAvailableZone(vector<vector<zone>>& grid, zone cell, const char& type)
 {
 
@@ -280,6 +281,7 @@ void updateAvailableZone(vector<vector<zone>>& grid, zone cell, const char& type
 
 }
 
+// This function will return the total values of and adjacent region for a given position
 zone selectRegion(const vector<vector<zone>>& grid, const position& cell, const char& type)
 {
 

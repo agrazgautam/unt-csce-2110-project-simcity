@@ -65,7 +65,7 @@ void updateIndustrial(vector<vector<zone>>& grid, bool& state)
 
 }
 
-
+// Update the values according to given instruction
 void updateIndustrialCondition(vector<vector<zone>>& grid, const position& cell, bool& state)
 {   
     zone worker = available(grid, 'R');

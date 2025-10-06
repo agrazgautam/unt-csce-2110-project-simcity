@@ -261,11 +261,13 @@ int main()
     char choice;
     position cell;
 
+    // Prompting user for looking at specific region
+
     while(true)
     {
         cout << "Do you want to take a closer look at a region?: [y/n] ";
         
-        while (!(cin >> choice))
+        while (!(cin >> choice)) // error handling when invalid input is given
         {
             cout << "Invalid input. Please try again with: [y/n]" << endl;
             cin.clear();
@@ -281,7 +283,7 @@ int main()
             
                 cout << "Please enter the X-Coordinate (Column): ";
 
-                while (!(cin >> cell.col))
+                while (!(cin >> cell.col)) // error handling when invalid input is given
                 {
                     cout << "Invalid input. Please try again with a valid integer." << endl;
                     cin.clear();
@@ -291,7 +293,7 @@ int main()
 
                 cout << "Please enter the Y-Coordinate (Row): ";
 
-                while (!(cin >> cell.row))
+                while (!(cin >> cell.row)) // error handling when invalid input is given
                 {
                     cout << "Invalid input. Please try again with a valid integer." << endl;
                     cin.clear();
