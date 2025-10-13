@@ -380,16 +380,16 @@ int main()
                     continue;
                 }
 
-
-                cout << "Total Population of the Area: " << selectRegion(grid, cell2, 'C').population + selectRegion(grid, cell2, 'I').population + selectRegion(grid, cell2, 'R').population << endl
-                << "Commercial Population of the Area: " << selectRegion(grid, cell2, 'C').population << endl
-                << "Industrial Population of the Area: " << selectRegion(grid, cell2, 'I').population << endl
-                << "Residential Population of the Area: " << selectRegion(grid, cell2, 'R').population << endl
-                << "Total Pollution of the Area: " << selectRegion(grid, cell2, 'C').pollution + selectRegion(grid, cell2, 'I').pollution + selectRegion(grid, cell2, 'R').pollution + selectRegion(grid, cell2, '-').pollution +
+                cout << endl << endl;
+                cout << "Total Population of the Second Area: " << selectRegion(grid, cell2, 'C').population + selectRegion(grid, cell2, 'I').population + selectRegion(grid, cell2, 'R').population << endl
+                << "Commercial Population of the Second Area: " << selectRegion(grid, cell2, 'C').population << endl
+                << "Industrial Population of the Second Area: " << selectRegion(grid, cell2, 'I').population << endl
+                << "Residential Population of the Second Area: " << selectRegion(grid, cell2, 'R').population << endl
+                << "Total Pollution of the Second Area: " << selectRegion(grid, cell2, 'C').pollution + selectRegion(grid, cell2, 'I').pollution + selectRegion(grid, cell2, 'R').pollution + selectRegion(grid, cell2, '-').pollution +
                 selectRegion(grid, cell2, 'T').pollution + selectRegion(grid, cell2, '#').pollution + selectRegion(grid, cell2, 'P').pollution + selectRegion(grid, cell2, ' ').pollution << endl
-                << "Commercial Pollution of the Area: " << selectRegion(grid, cell2, 'C').pollution << endl
-                << "Industrial Pollution of the Area: " << selectRegion(grid, cell2, 'I').pollution << endl
-                << "Residential Pollution of the Area: " << selectRegion(grid, cell2, 'R').pollution << endl;
+                << "Commercial Pollution of the Second Area: " << selectRegion(grid, cell2, 'C').pollution << endl
+                << "Industrial Pollution of the Second Area: " << selectRegion(grid, cell2, 'I').pollution << endl
+                << "Residential Pollution of the Second Area: " << selectRegion(grid, cell2, 'R').pollution << endl;
 
                 cout << endl;
 
@@ -419,15 +419,15 @@ int main()
 
                 if (cell1Pollution > cell2Pollution)
                 {
-                    cout << "First Region (" << cell.col << "," << cell.row << ") has greater population density than Second Region (" << cell2.col << "," << cell2.row << "): " << cell1Pollution << " > " << cell2Pollution << endl;
+                    cout << "First Region (" << cell.col << "," << cell.row << ") has greater pollution than Second Region (" << cell2.col << "," << cell2.row << "): " << cell1Pollution << " > " << cell2Pollution << endl;
                 }
                 else if (cell1Pollution < cell2Pollution)
                 {
-                    cout << "Second Region (" << cell2.col << "," << cell2.row << ") has greater population density than First Region (" << cell.col << "," << cell.row << "): " << cell2Pollution << " > " << cell1Pollution << endl;
+                    cout << "Second Region (" << cell2.col << "," << cell2.row << ") has greater pollution than First Region (" << cell.col << "," << cell.row << "): " << cell2Pollution << " > " << cell1Pollution << endl;
                 }
                 else
                 {
-                    cout << "First Region and Second Region has same population density: " << cell1Pollution << endl;
+                    cout << "First Region and Second Region has same total pollution: " << cell1Pollution << endl;
                 }
                 
 
@@ -437,7 +437,7 @@ int main()
             }
 
         }
-        else if (choice == 'n' || choice == 'N'){break;}
+        else if (choice == 'n' || choice == 'N'){continue;;}
         else {cout << "Invalid input. Please try again." << endl;}
 
         cout << endl;
