@@ -259,7 +259,9 @@ int main()
     print_layout(grid);
 
     char choice;
-    position cell;
+    position cell, cell2;
+
+    int cell1Population, cell2Population, cell1Pollution, cell2Pollution;
 
     // Prompting user for looking at specific region
 
@@ -329,6 +331,117 @@ int main()
 
         else if (choice == 'n' || choice == 'N'){break;}
         else {cout << "Invalid input. Please try again." << endl;}
+
+        cout << endl;
+
+        /************************************************************************************************************************************************/
+        // Compare to another region
+
+        cout << "Do you want to compare this to a different region?: [y/n] ";
+
+        while (!(cin >> choice)) // error handling when invalid input is given
+        {
+            cout << "Invalid input. Please try again with: [y/n]" << endl;
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+        }
+
+        if (choice == 'y' || choice == 'Y')
+        {   
+            while (true)
+            {
+            
+                cout << "Please enter the X-Coordinate (Column): ";
+
+                while (!(cin >> cell2.col)) // error handling when invalid input is given
+                {
+                    cout << "Invalid input. Please try again with a valid integer." << endl;
+                    cin.clear();
+                    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+                }
+
+                cout << "Please enter the Y-Coordinate (Row): ";
+
+                while (!(cin >> cell2.row)) // error handling when invalid input is given
+                {
+                    cout << "Invalid input. Please try again with a valid integer." << endl;
+                    cin.clear();
+                    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+                }
+
+                if (cell2.row < 0 || cell2.col < 0) {cout << "Invalid input. Please enter a positive number." << endl; continue;}
+
+                if ( cell2.row > (static_cast<int>(grid.size())-1) || cell2.col > (static_cast<int>(grid.at(0).size())-1))
+                {
+                    cout << "Invalid input. Please enter a value X-Coordinate: 0-" << grid.at(0).size()-1 << " Y-Coordinate: 0-" << grid.size()-1 << endl;
+                    continue;
+                }
+
+
+                cout << "Total Population of the Area: " << selectRegion(grid, cell2, 'C').population + selectRegion(grid, cell2, 'I').population + selectRegion(grid, cell2, 'R').population << endl
+                << "Commercial Population of the Area: " << selectRegion(grid, cell2, 'C').population << endl
+                << "Industrial Population of the Area: " << selectRegion(grid, cell2, 'I').population << endl
+                << "Residential Population of the Area: " << selectRegion(grid, cell2, 'R').population << endl
+                << "Total Pollution of the Area: " << selectRegion(grid, cell2, 'C').pollution + selectRegion(grid, cell2, 'I').pollution + selectRegion(grid, cell2, 'R').pollution + selectRegion(grid, cell2, '-').pollution +
+                selectRegion(grid, cell2, 'T').pollution + selectRegion(grid, cell2, '#').pollution + selectRegion(grid, cell2, 'P').pollution + selectRegion(grid, cell2, ' ').pollution << endl
+                << "Commercial Pollution of the Area: " << selectRegion(grid, cell2, 'C').pollution << endl
+                << "Industrial Pollution of the Area: " << selectRegion(grid, cell2, 'I').pollution << endl
+                << "Residential Pollution of the Area: " << selectRegion(grid, cell2, 'R').pollution << endl;
+
+                cout << endl;
+
+                cell1Population = (selectRegion(grid, cell, 'C').population + selectRegion(grid, cell, 'I').population + selectRegion(grid, cell, 'R').population);
+                cell2Population = (selectRegion(grid, cell2, 'C').population + selectRegion(grid, cell2, 'I').population + selectRegion(grid, cell2, 'R').population);
+
+                cell1Pollution = (selectRegion(grid, cell, 'C').pollution + selectRegion(grid, cell, 'I').pollution + selectRegion(grid, cell, 'R').pollution + selectRegion(grid, cell, '-').pollution +
+                selectRegion(grid, cell, 'T').pollution + selectRegion(grid, cell, '#').pollution + selectRegion(grid, cell, 'P').pollution + selectRegion(grid, cell, ' ').pollution);
+
+                cell2Pollution = (selectRegion(grid, cell2, 'C').pollution + selectRegion(grid, cell2, 'I').pollution + selectRegion(grid, cell2, 'R').pollution + selectRegion(grid, cell2, '-').pollution +
+                selectRegion(grid, cell2, 'T').pollution + selectRegion(grid, cell2, '#').pollution + selectRegion(grid, cell2, 'P').pollution + selectRegion(grid, cell2, ' ').pollution);
+
+                if (cell1Population > cell2Population)
+                {
+                    cout << "First Region (" << cell.col << "," << cell.row << ") has greater population density than Second Region (" << cell2.col << "," << cell2.row << "): " << cell1Population << " > " << cell2Population << endl;
+                }
+                else if (cell1Population < cell2Population)
+                {
+                    cout << "Second Region (" << cell2.col << "," << cell2.row << ") has greater population density than First Region (" << cell.col << "," << cell.row << "): " << cell2Population << " > " << cell1Population << endl;
+                }
+                else
+                {
+                    cout << "First Region and Second Region has same population density: " << cell1Population << endl;
+                }
+
+
+
+                if (cell1Pollution > cell2Pollution)
+                {
+                    cout << "First Region (" << cell.col << "," << cell.row << ") has greater population density than Second Region (" << cell2.col << "," << cell2.row << "): " << cell1Pollution << " > " << cell2Pollution << endl;
+                }
+                else if (cell1Pollution < cell2Pollution)
+                {
+                    cout << "Second Region (" << cell2.col << "," << cell2.row << ") has greater population density than First Region (" << cell.col << "," << cell.row << "): " << cell2Pollution << " > " << cell1Pollution << endl;
+                }
+                else
+                {
+                    cout << "First Region and Second Region has same population density: " << cell1Pollution << endl;
+                }
+                
+
+
+                break;
+
+            }
+
+        }
+        else if (choice == 'n' || choice == 'N'){break;}
+        else {cout << "Invalid input. Please try again." << endl;}
+
+        cout << endl;
+
 
     }
 
